@@ -1,0 +1,83 @@
+\documentclass[12pt,a4paper]{article}
+\pagenumbering{roman}
+\usepackage{array}
+\usepackage{amssymb}
+\begin{document}
+   \textbf{ 1. Let the original data be 11111010                10100011    11101010 10101101. The data is divided into 4 sections i.e. k=4 and each section contains 8 bits. Find the checksum generated at sender side and check whether the data is accepted or rejected by receiver.
+    \vskip 12pt
+Ans:- }
+    \begin{center}
+    Given original data:- 
+     \begin{tabular}{ | c | c | c | c| }
+      \hline 11111010 & 10100011 & 11101010 & 10101101\\ \hline
+      \end{tabular}\\
+    \end{center}
+    \hspace{14em}a \hspace{4em}b \hspace{4em}c \hspace{4em}d
+    \vskip 12pt   k=4,m=8
+    \vskip 20pt
+    \setlength{\tabcolsep}{3em}
+    \begin{tabular}{ r | r }
+      At sender side & At receiver side  \\\\
+     a~~~~~~11111010 & a~~~~~~11111010 \\ b~~~~~~\underline{10100011} & b~~~~~~\underline{10100011}  \\ \textcircled{$1$}10011101 & \textcircled{$1$}10011101 \\
+      \underline{$\hookrightarrow$ \hspace{10mm} 1}  & \underline{$\hookrightarrow$ \hspace{10mm} 1} \\ 10011110 & 10011110 \\ c~~~~~~\underline{11101010} & c~~~~~~\underline{11101010} \\ \textcircled{$1$}10001000 & \textcircled{$1$}10001000 \\  \underline{$\hookrightarrow$ \hspace{10mm} 1} & \underline{$\hookrightarrow$ \hspace{10mm} 1} \\ 10001001 & 10001001 \\ d~~~~~~\underline{10101101} & d~~~~~~\underline{10101101} \\ \textcircled{$1$}00110110 &  \textcircled{$1$}00110110\\ \underline{$\hookrightarrow$ \hspace{10mm} 1} & \underline{$\hookrightarrow$ \hspace{10mm} 1} \\ Sum: \underline{00110111} &  00110111\\
+      Checksum: 11001000 &  \underline{11001000}\\
+      & Sum: 11111111\\ & Complement: 00000000\\\\ & Conclusion: Accept data
+    \end{tabular}
+    \newpage
+       \textbf{2. What is the difference between pure and slotted Aloha?  Derive the efficiency of them.
+   \vskip 12pt
+   Ans:-}
+   \vskip 2em
+    \begin{tabular}{|m{12em}|m{12em}|}
+    \hline
+    \bf Pure Aloha & \bf Slotted Aloha\\
+    \hline \footnotesize \textbf{1.} In pure Aloha, data can transmit at any time in any station. & \footnotesize \textbf{1.} In Slotted Aloha data can transmit only at the beginning of a time slot in any station\\
+    \hline \footnotesize \textbf{2.} Time is continuous in pure aloha and it is not globally synchronized. & \footnotesize \textbf{2.} Time is discrete in slotted aloha and it is globally synchronized.\\
+    \hline \footnotesize \textbf{3.} The vulnerable time or susceptible time in pure aloha is equal to $(2 \times Tt)$. & \footnotesize \textbf{3.} The vulnerabletime in slotted aloha is equal to $(Tt)$.\\
+    \hline \footnotesize \textbf{4.} The maximum efficiency is equal to 18.4\%. & \footnotesize \textbf{4.} The maximum efficiency is equal to 36.8\%.\\
+    \hline \footnotesize \textbf{5.} The probability of successfull transmission of a data packet $ S = G\times e^{-2G}$. & \footnotesize \textbf{5.} The probability of successfull transmission of data packet $S = G\times e^{-G}$.\\
+    \hline \footnotesize \textbf{6.} It does not reduce the number of collisions. & \footnotesize \textbf{6.} It reduces the number of collisions to half, thus double the efficiency.\\
+    \hline
+    \end{tabular}
+\newpage
+\underline{Derivation the efficiency of Pure Aloha}\\
+\par Here,\\
+\begin{equation}
+ S=G\times e^{-2G}
+\end{equation}
+ For Maximum efficiency\\
+ \vskip 4pt
+$\Rightarrow \frac{dS}{dG}=0$ \\
+\par $\Rightarrow \frac{d(G\times e^{-2G})}{dG}=0$\\
+\par $\Rightarrow \frac{Gd(e^{-2G})}{dG}+\frac{e^{-2G}dG}{dG}=0$\\
+\par $\Rightarrow -2Ge^{-2G}+e^{-2G}=0$\\     
+\par $\Rightarrow e^{-2G}(1-2G)=0$\\\\
+$\therefore$ $ G=\frac{1}{2}$\\\\
+ From equation(1), putting $G=\frac{1}{2}$\\\\
+\par $ S=\frac{1}{2}\times e^{-2\times \frac{1}{2}}$\\
+\par $=\frac{1}{2} \times e^{-1}$\\
+\par $=\frac{1}{2}\times \frac{1}{e}$\\
+\par $=\frac{1}{2}\times \frac{1}{2.718}$\\\\
+$\therefore$ $S=18.4\%$
+\newpage
+\underline{Derivation the efficiency of Slotted Aloha}\\
+\par Here,\\
+\begin{equation}
+  S=G\times e^{-G}\\
+\end{equation}
+For Maximum efficiency \\
+\vskip 4pt
+\par $\Rightarrow \frac{dS}{dG}=0$\\ 
+\par $\Rightarrow \frac{d(G\times e^{-G})}{dG}=0$\\
+\par $\Rightarrow \frac{Gd(e^{-G})}{dG}+\frac{e^{-G}dG}{dG}=0$\\
+\par $\Rightarrow -Ge^{-G}+e^{-G}=0$\\
+\par $\Rightarrow e^{-G}(1-G)=0$\\\\
+$\therefore$ $G=1$\\\\
+From equation(2), putting G=1\\
+\par $S=1\times e^{-1\times 1}$\\
+\par $=1 \times e^{-1}$\\
+\par $=1\times \frac{1}{e}$\\
+\par $=1\times \frac{1}{2.718}$\\\\
+$\therefore$ $=36.8\%$
+\end{document}
+
